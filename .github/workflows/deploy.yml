@@ -26,7 +26,16 @@ jobs:
           distribution: 'corretto'
           cache: gradle  # Gradle 의존성 캐시 재사용으로 빌드 속도 향상
 
-      - name: Set executable permissions for gradlew  # gradlew 실행 권한 부여
+      - name: Create .env.common # .env.common 복원
+        run: echo "${{ secrets.ENV_COMMON_FILE }}" | base64 --decode > .env.common
+
+      - name: Create .env.prod # .env.prod 복원
+        run: echo "${{ secrets.ENV_PROD_FILE }}" | base64 --decode > .env.prod
+
+      - name: Create application-secret.yml # application-secret.yml 복원
+        run: echo "${{ secrets.SECRET_FILE }}" | base64 --decode > ./src/main/resources/application-secret.yml
+
+      - name: Set executable permissions for gradlew  # 테스트 코드 실행을 위해 gradlew 실행 권한 부여
         run: chmod +x ./gradlew
 
       - name: Wait for Redis to be ready  # Redis 컨테이너가 준비될 때까지 대기 (테스트 시 사용될 수 있음)
@@ -79,6 +88,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/seulmae
+            cd ~/short-url
             docker pull short-url:latest
             docker compose up -d
