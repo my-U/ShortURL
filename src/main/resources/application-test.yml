@@ -1,0 +1,18 @@
+spring:
+  datasource: # Github Actions의 build 과정 중 test 의 db 연결을 위해 추가
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+  data: # 외부 의존성 끄기
+    redis:
+      host: localhost
+      port: 6379
