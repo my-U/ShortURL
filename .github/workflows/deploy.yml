@@ -90,7 +90,7 @@ jobs:
 
           curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\": \"$MESSAGE\"}" \
-            ${{ secrets.SLACK_TEST_CICD_WEBHOOK }}
+            ${{ secrets.SLACK_CICD_WEBHOOK }}
 
   deploy:
     needs: build  # build job 성공 시에만 실행됨
