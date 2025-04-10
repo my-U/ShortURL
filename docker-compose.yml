@@ -14,7 +14,7 @@ services:
       - .env.prod
     environment:
       SPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
-      SPRING_REDIS_PORT: ${SPRING_REDIS_POST}
+      SPRING_REDIS_PORT: ${SPRING_REDIS_PORT}
 
   mysql:
     image: mysql:8.0
