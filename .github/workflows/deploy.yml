@@ -115,8 +115,8 @@ jobs:
             docker compose up -d
 
             # .env 파일 삭제
-            rm .env.common
-            rm .env.prod
+            # rm .env.common
+            # rm .env.prod
 
       - name: Notify Slack
         if: always() # 성공이든 실패든 무조건 실행
