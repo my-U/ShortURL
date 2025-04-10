@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   short-url:
-    build: .
+    image: myouth/short-url:latest
     container_name: short-url
     ports:
       - "8080:8080"
