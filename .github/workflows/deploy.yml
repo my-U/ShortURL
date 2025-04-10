@@ -102,7 +102,10 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/short-url
-
+            
+            # docker-compose.yml 다운로드
+            curl -o docker-compose.yml https://raw.githubusercontent.com/my-U/ShortURL/main/docker-compose.yml
+            
             # .env 파일 복원
             echo "${{ secrets.ENV_COMMON_FILE }}" | base64 --decode > .env.common
             echo "${{ secrets.ENV_PROD_FILE }}" | base64 --decode > .env.prod
