@@ -125,8 +125,7 @@ jobs:
             docker image prune -f
             
             # .env 파일 삭제
-            rm .env.common
-            rm .env.prod
+            rm .env
 
       - name: Notify Slack
         if: always() # 성공이든 실패든 무조건 실행
