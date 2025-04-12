@@ -1,23 +1,6 @@
 version: '3.8'
 
 services:
-  short-url:
-    image: myouth/short-url:latest
-    container_name: short-url
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mysql
-      - redis
-    env_file: # 값을 적용할 환견변수 파일 지정
-      - .env
-    environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      SPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
-      SPRING_REDIS_PORT: ${SPRING_REDIS_PORT}
-
   mysql:
     image: mysql:8.0
     container_name: short-url-mysql
@@ -32,3 +15,21 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
+
+  short-url:
+    image: myouth/short-url:latest
+    container_name: short-url
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    env_file: # 값을 적용할 환견변수 파일 지정
+      - .env.common
+      - .env.prod
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
+      SPRING_REDIS_PORT: ${SPRING_REDIS_PORT}
