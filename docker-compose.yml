@@ -9,7 +9,7 @@ services:
       - .env.prod
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_DATABASE: short_url
     ports:
       - "3306:3306"
 
