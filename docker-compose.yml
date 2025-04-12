@@ -10,8 +10,7 @@ services:
       - mysql
       - redis
     env_file: # 값을 적용할 환견변수 파일 지정
-      - .env.common
-      - .env.prod
+      - .env
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
