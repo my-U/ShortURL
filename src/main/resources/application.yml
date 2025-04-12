@@ -17,6 +17,9 @@ spring:
       format_sql: true  # Hibernate SQL ?? ?? (???? ??)
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # Hibernate ??? ??? ?? ??
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect # Hibernate가 사용할 SQL 직접 지정
 
   mvc:
     hiddenmethod:
