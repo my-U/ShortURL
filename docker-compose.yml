@@ -1,6 +1,4 @@
-version: '3.8'
-
-services:
+services: # 생성되는 순서 중요
   mysql:
     image: mysql:8.0
     container_name: short-url-mysql
@@ -10,7 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_HOST: '%' # 외부 접속을 위해 계정의 Host 명시. 기본적으로는 localhost 사용
     ports:
       - "3306:3306"
 
