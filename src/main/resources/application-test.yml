@@ -1,6 +1,6 @@
 spring:
   datasource: # Github Actions의 build 과정 중 test 의 db 연결을 위해 추가
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:testdb;MODE=MYSQL # MODE 설정을 추가해야 h2에서 mysql 쿼리가 정상적으로 작동
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -11,6 +11,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
 
   data: # 외부 의존성 끄기
     redis:
