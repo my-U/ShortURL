@@ -105,27 +105,27 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            # cd ~/short-url
+            cd ~/short-url
             
             # docker-compose.yml 다운로드
             curl -o docker-compose.yml https://raw.githubusercontent.com/my-U/ShortURL/master/docker-compose.yml
             
             # .env 파일 복원
-            # echo "${{ secrets.ENV_COMMON_FILE }}" | base64 --decode > .env.common
-            # echo "${{ secrets.ENV_PROD_FILE }}" | base64 --decode > .env.prod
+            echo "${{ secrets.ENV_COMMON_FILE }}" | base64 --decode > .env.common
+            echo "${{ secrets.ENV_PROD_FILE }}" | base64 --decode > .env.prod
 
             # .env 파일로 합치기 - docker-compose.yml 파일의 ${VAR} 형식은 .env 파일만 인식하기 때문
-            # cat .env.prod .env.common > .env
+            cat .env.prod .env.common > .env
             
             # 최신 이미지 pull + 컨테이너 재시작
-            # docker pull myouth/short-url:latest
-            # docker compose up -d
+            docker pull myouth/short-url:latest
+            docker compose up -d
 
             # 사용되지 않는(dangling) 이미지 정리
-            # docker image prune -f
+            docker image prune -f
             
             # .env 파일 삭제
-            # rm .env .env.common .env.prod
+            rm .env .env.common .env.prod
 
       - name: Notify Slack
         if: always() # 성공이든 실패든 무조건 실행
