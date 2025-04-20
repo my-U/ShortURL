@@ -28,7 +28,7 @@ public class UrlMapping {
     @Column(name = "short_url", nullable = false, unique = true)
     private String shortUrl;
 
-    @Column(name = "original_url", nullable = false, unique = true)
+    @Column(name = "original_url", nullable = false)
     private String originalUrl;
 
     @Builder.Default
